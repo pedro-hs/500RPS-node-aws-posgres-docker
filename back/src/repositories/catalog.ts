@@ -20,7 +20,7 @@ export class CatalogRepository {
     return rows[0];
   }
 
-  async insertVehicle(vehicleType: IVehicleType) {
+  async insertVehicleType(vehicleType: IVehicleType) {
     const { rows } = await this.pool.query(INSERT_VEHICLE_TYPE, []);
     return rows[0];
   }
