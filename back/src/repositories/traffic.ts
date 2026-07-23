@@ -1,4 +1,4 @@
-import { loadSql } from '../db/load-sql';
+import { loadSql, bindToPositionalParams } from '../db/load-sql';
 import type { Pool } from 'pg';
 import type { ITrafficEventRequest } from '../interfaces/traffic';
 
@@ -20,7 +20,8 @@ export class TrafficRepository {
   }
 
   async insertTrafficEvent(event: ITrafficEventRequest) {
-    const { rows } = await this.pool.query(INSERT_TRAFFIC_EVENT, []);
+    const queryWithParams = bindToPositionalParams<ITrafficEventRequest>(INSERT_TRAFFIC_EVENT, event);
+    const { rows } = await this.pool.query(queryWithParams);
     return rows[0];
   }
 }
