@@ -1,11 +1,11 @@
 CREATE TABLE countries (
     id CHAR(2) PRIMARY KEY,  -- ISO 3166-1 alpha-2
-    name VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE vehicle_types (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE traffic_events (

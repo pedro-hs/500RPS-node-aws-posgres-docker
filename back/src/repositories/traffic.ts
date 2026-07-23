@@ -1,4 +1,4 @@
-import { loadSql, bindToPositionalParams } from '../db/load-sql';
+import { loadSql, bindToPositionalParams } from '../db/sql-utils';
 import type { Pool } from 'pg';
 import type { ITrafficEventRequest } from '../interfaces/traffic';
 
