@@ -1,8 +1,13 @@
 import { Pool } from 'pg';
 
+const MAX_CONNECTIONS = 20;
+const IDLE_CLIENT_TIMEOUT = 30000;
+const CONNECTION_TIMEOUT = 2000;
+const QUERY_TIMEOUT = 5000;
+
 export const pool = new Pool({
-  max: 20, // max of active connections
-  idleTimeoutMillis: 30000, // close idle clients after 30 sec
-  connectionTimeoutMillis: 2000, // fail when not connect under 2 sec
-  statement_timeout: 5000, // cancel queries after 5 sec
+  max: MAX_CONNECTIONS,
+  idleTimeoutMillis: IDLE_CLIENT_TIMEOUT,
+  connectionTimeoutMillis: CONNECTION_TIMEOUT,
+  statement_timeout: QUERY_TIMEOUT,
 });
