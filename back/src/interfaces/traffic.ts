@@ -7,8 +7,18 @@ export interface ITrafficEvent {
 
 export interface ITrafficEventRequest extends Omit<ITrafficEvent, 'id' | 'occurredAt'> {}
 
+export interface ICountryTrafficVolume {
+  country: string;
+  total: number;
+}
+
+export interface IVehicleTypeCount {
+  vehicleType: string;
+  total: number;
+}
+
 export interface ITrafficService {
-  getCountryTrafficVolume(): Promise<unknown[]>;
-  getVehicleTypeCount(): Promise<unknown[]>;
-  insertTrafficEvent(event: ITrafficEventRequest): Promise<unknown>;
+  getCountryTrafficVolume(): Promise<ICountryTrafficVolume[]>;
+  getVehicleTypeCount(): Promise<IVehicleTypeCount[]>;
+  insertTrafficEvent(event: ITrafficEventRequest): Promise<ITrafficEvent>;
 }

@@ -29,18 +29,12 @@ INSERT INTO traffic_events (country_id, vehicle_type_id, occurred_at) VALUES
     ('US', 4, now()),
     ('DE', 2, now());
 
-INSERT INTO country_traffic_daily (country_id, date, total)
-SELECT
-    country_id,
-    occurred_at::date AS date,
-    COUNT(*) AS total
+INSERT INTO country_traffic_total (country_id, total)
+SELECT country_id, COUNT(*) AS total
 FROM traffic_events
-GROUP BY country_id, occurred_at::date;
+GROUP BY country_id;
 
-INSERT INTO vehicle_type_daily (vehicle_type_id, date, total)
-SELECT
-    vehicle_type_id,
-    occurred_at::date AS date,
-    COUNT(*) AS total
+INSERT INTO vehicle_type_total (vehicle_type_id, total)
+SELECT vehicle_type_id, COUNT(*) AS total
 FROM traffic_events
-GROUP BY vehicle_type_id, occurred_at::date;
+GROUP BY vehicle_type_id;
