@@ -9,6 +9,7 @@ const QUERY_TIMEOUT = 5000;
 export const pool = new Pool({
   connectionString: env.databaseUrl,
   max: MAX_CONNECTIONS,
+  ssl: env.databaseUrl.includes('rds.amazonaws.com') ? { rejectUnauthorized: false } : undefined,
   idleTimeoutMillis: IDLE_CLIENT_TIMEOUT,
   connectionTimeoutMillis: CONNECTION_TIMEOUT,
   statement_timeout: QUERY_TIMEOUT,
