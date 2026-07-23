@@ -5,11 +5,13 @@ const INSERT_VEHICLE_TYPE = loadSql('catalog/insert_vehicle_type.sql');
 const INSERT_COUNTRY = loadSql('catalog/insert_country.sql');
 
 interface IVehicleType {
-  // TODO
+  id: number;
+  name: string;
 }
 
 interface ICountry {
-  // TODO
+  id: number; // ISO 3166-1 alpha-2
+  name: string;
 }
 
 export class CatalogRepository {
@@ -20,7 +22,7 @@ export class CatalogRepository {
     return rows[0];
   }
 
-  async insertVehicleType(vehicleType: IVehicleType) {
+  async insertVehicleType(vehicleType: Omit<IVehicleType, 'id'>) {
     const { rows } = await this.pool.query(INSERT_VEHICLE_TYPE, []);
     return rows[0];
   }

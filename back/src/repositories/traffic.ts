@@ -6,7 +6,10 @@ const VEHICLE_TYPE_COUNT = loadSql('traffic/get_vehicle_type_count.sql');
 const INSERT_TRAFFIC_EVENT = loadSql('traffic/insert_traffic_event.sql');
 
 interface ITrafficEvent {
-  // TODO
+  id: number;
+  countryId: string;
+  vehicleTypeId: number;
+  occurredAt: Date;
 }
 
 export class TrafficRepository {
@@ -22,7 +25,7 @@ export class TrafficRepository {
     return rows;
   }
 
-  async insertTrafficEvent(event: ITrafficEvent) {
+  async insertTrafficEvent(event: Omit<ITrafficEvent, 'id' | 'occurredAt'>) {
     const { rows } = await this.pool.query(INSERT_TRAFFIC_EVENT, []);
     return rows[0];
   }
