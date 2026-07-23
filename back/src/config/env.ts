@@ -5,4 +5,6 @@ export const env = {
   corsOrigin: process.env.CORS_ORIGIN ?? '*',
   rateLimitMax: Number(process.env.RATE_LIMIT_MAX ?? 1000),
   clusterEnabled: process.env.CLUSTER_ENABLED !== 'false',
+  cacheEnabled: process.env.CACHE_ENABLED !== 'false',
+  cacheTtlSeconds: Number(process.env.CACHE_TTL_SECONDS ?? 30),
 };

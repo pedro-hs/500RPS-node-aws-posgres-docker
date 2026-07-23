@@ -1,4 +1,5 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
+import { isForeignKeyViolation } from '../db/sql-utils';
 import type { ITrafficService, ITrafficEventRequest } from '../interfaces/traffic';
 
 export class TrafficController {
@@ -18,7 +19,15 @@ export class TrafficController {
     request: FastifyRequest<{ Body: ITrafficEventRequest }>,
     reply: FastifyReply,
   ) => {
-    const event = await this.service.insertTrafficEvent(request.body);
-    reply.code(201).send(event);
+    try {
+      const event = await this.service.insertTrafficEvent(request.body);
+      reply.code(201).send(event);
+    } catch (err) {
+      if (isForeignKeyViolation(err)) {
+        reply.code(400).send({ message: 'countryId or vehicleTypeId does not exist' });
+        return;
+      }
+      throw err;
+    }
   };
 }
