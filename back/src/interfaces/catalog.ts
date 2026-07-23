@@ -11,6 +11,8 @@ export interface ICountry {
 }
 
 export interface ICatalogService {
-  insertCountry(country: ICountry): Promise<unknown>;
-  insertVehicleType(vehicleType: IVehicleTypeRequest): Promise<unknown>;
+  listCountries(): Promise<ICountry[]>;
+  listVehicleTypes(): Promise<IVehicleType[]>;
+  insertCountry(country: ICountry): Promise<ICountry>;
+  insertVehicleType(vehicleType: IVehicleTypeRequest): Promise<IVehicleType>;
 }

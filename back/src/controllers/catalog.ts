@@ -4,6 +4,16 @@ import type { ICatalogService, ICountry, IVehicleTypeRequest } from '../interfac
 export class CatalogController {
   constructor(private readonly service: ICatalogService) {}
 
+  public listCountries = async (_request: FastifyRequest, reply: FastifyReply) => {
+    const countries = await this.service.listCountries();
+    reply.send(countries);
+  };
+
+  public listVehicleTypes = async (_request: FastifyRequest, reply: FastifyReply) => {
+    const vehicleTypes = await this.service.listVehicleTypes();
+    reply.send(vehicleTypes);
+  };
+
   public insertCountry = async (
     request: FastifyRequest<{ Body: ICountry }>,
     reply: FastifyReply,
