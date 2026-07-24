@@ -1,8 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-export const FOREIGN_KEY_VIOLATION = '23503';
-
 export function loadSql(fileName: string): string {
   return readFileSync(join(__dirname, 'queries', fileName), 'utf-8');
 }
@@ -19,6 +17,8 @@ export function bindToPositionalParams<T>(sql: string, namedParams: T): { text: 
 
   return { text, values };
 }
+
+export const FOREIGN_KEY_VIOLATION = '23503';
 
 export function isForeignKeyViolation(err: unknown): boolean {
   return (err as { code?: string }).code === FOREIGN_KEY_VIOLATION;
