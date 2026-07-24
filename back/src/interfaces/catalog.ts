@@ -3,7 +3,7 @@ export interface IVehicleType {
   name: string;
 }
 
-export interface IVehicleTypeRequest extends Omit<IVehicleType, 'id'> {}
+export type IVehicleTypeRequest = Omit<IVehicleType, 'id'>;
 
 export interface ICountry {
   id: string; // ISO 3166-1 alpha-2

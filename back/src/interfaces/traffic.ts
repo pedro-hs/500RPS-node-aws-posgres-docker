@@ -5,7 +5,7 @@ export interface ITrafficEvent {
   occurredAt: Date;
 }
 
-export interface ITrafficEventRequest extends Omit<ITrafficEvent, 'id' | 'occurredAt'> {}
+export type ITrafficEventRequest = Omit<ITrafficEvent, 'id' | 'occurredAt'>;
 
 export interface ICountryTrafficVolume {
   country: string;
