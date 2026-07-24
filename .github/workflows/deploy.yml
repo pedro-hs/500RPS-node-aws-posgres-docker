@@ -5,8 +5,27 @@ on:
     branches: [master]
 
 jobs:
-  deploy:
+  ci:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: back
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: back/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+
+  deploy:
+    needs: ci
+    runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
