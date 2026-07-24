@@ -16,20 +16,21 @@ terraform apply
 ssh -i ~/traffic-key.pem ec2-user@<api_ip>
 git clone https://github.com/pedro-hs/500RPS-node-aws-posgres-docker.git ~/traffic
 cd ~/traffic
-./db/setup.sh <db_host> <db_password>
+./db/setup_in_ec2_box.sh <db_host> <db_password>
 exit
 
-# edit github secrets/variables
-  secret  EC2_HOST 1.2.3.4
-  secret  EC2_SSH_KEY (contents of ~/traffic-key.pem)
-  secret  DATABASE_URL postgres://traffic:PASSWORD@HOST:5432/traffic
-  variable  PORT 3000
-  variable  HOST 0.0.0.0
-  variable  CORS_ORIGIN https://your-frontend.com
-  variable  RATE_LIMIT_MAX 50
-  variable  CLUSTER_ENABLED true
-  variable  CACHE_ENABLED true
-  variable  CACHE_TTL_SECONDS 30
+sudo apt install gh
+# download and configure gh (github cli) to secrets/variables or set manually
+gh secret set EC2_HOST --repo pedro-hs/500RPS-node-aws-posgres-docker --body "1.2.3.4"
+gh secret set EC2_SSH_KEY --repo pedro-hs/500RPS-node-aws-posgres-docker < ~/traffic-key.pem
+gh secret set DATABASE_URL --repo pedro-hs/500RPS-node-aws-posgres-docker --body "postgres://traffic:[PASSWORD]@traffic-db.[XPTO].us-east-1.rds.amazonaws.com:5432/traffic"
+gh variable set PORT --repo pedro-hs/500RPS-node-aws-posgres-docker --body "3000"
+gh variable set HOST --repo pedro-hs/500RPS-node-aws-posgres-docker --body "0.0.0.0"
+gh variable set CORS_ORIGIN --repo pedro-hs/500RPS-node-aws-posgres-docker --body "https://your-frontend.com"
+gh variable set RATE_LIMIT_MAX --repo pedro-hs/500RPS-node-aws-posgres-docker --body "50"
+gh variable set CLUSTER_ENABLED --repo pedro-hs/500RPS-node-aws-posgres-docker --body "true"
+gh variable set CACHE_ENABLED --repo pedro-hs/500RPS-node-aws-posgres-docker --body "true"
+gh variable set CACHE_TTL_SECONDS --repo pedro-hs/500RPS-node-aws-posgres-docker --body "30"
 
 git commit --allow-empty -m "trigger deploy"
 git push
