@@ -1,9 +1,11 @@
 ```
+aws ec2 delete-key-pair --profile personal --key-name traffic-key
+rm ~/traffic-key.pem
 aws ec2 create-key-pair --profile personal --key-name traffic-key \
   --query 'KeyMaterial' --output text > ~/traffic-key.pem
 chmod 400 ~/traffic-key.pem
 
-# edit infra/terraform.tfvars.example to infra/terraform.tfvars, and set db_password to a real value
+# edit infra/terraform.tfvars.example to infra/terraform.tfvars, and set db_password to a real value (e.g. `openssl rand -hex 16`)
 
 cd infra
 terraform init
