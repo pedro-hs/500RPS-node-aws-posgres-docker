@@ -9,6 +9,8 @@ export function useInsertEvent() {
     mutationFn: insertEvent,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.countryVolume });
+      queryClient.invalidateQueries({ queryKey: queryKeys.vehicleTypeCount });
     },
+
   });
 }

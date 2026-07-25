@@ -5,6 +5,11 @@ export interface CountryVolume {
   total: number;
 }
 
+export interface VehicleTypeCount {
+  vehicleType: string;
+  total: number;
+}
+
 export interface InsertEventRequest {
   countryId: string;
   vehicleTypeId: number;
@@ -12,6 +17,9 @@ export interface InsertEventRequest {
 
 export const getCountryVolume = () =>
   apiFetch<CountryVolume[]>('/traffic/countries/volume');
+
+export const getVehicleTypeCount = () =>
+  apiFetch<VehicleTypeCount[]>('/traffic/vehicles-type/count');
 
 export const insertEvent = (body: InsertEventRequest) =>
   apiFetch('/traffic/events', {
