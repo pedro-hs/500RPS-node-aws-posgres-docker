@@ -33,7 +33,11 @@ resource "aws_instance" "api" {
   instance_type          = "t3.small"
   key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.api.id]
-  user_data              = "#!/bin/bash\ndnf install -y docker git\nsystemctl enable --now docker\n"
+  user_data              = "#!/bin/bash\ndnf install -y docker git\nsystemctl enable --now docker\nusermod -aG docker ec2-user\n"
+
+  root_block_device {
+    volume_size = 20
+  }
 }
 
 output "api_ip" { value = aws_instance.api.public_ip }
