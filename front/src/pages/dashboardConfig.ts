@@ -4,8 +4,8 @@ export type View = 'country' | 'vehicle';
 export type ChartType = 'bar' | 'line' | 'pie';
 
 export const VIEWS = [
-  { id: 'country' as const, label: 'Country Traffic' },
-  { id: 'vehicle' as const, label: 'Vehicle Type' },
+  { id: 'country' as const, label: 'Country-wise Traffic' },
+  { id: 'vehicle' as const, label: 'Vehicle Type Distribution' },
 ];
 
 export const CHART_TYPES = ['bar', 'line', 'pie'] as const;

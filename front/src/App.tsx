@@ -1,13 +1,26 @@
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
+
+const linkClass = ({ isActive }: { isActive: boolean }) =>
+  isActive ? 'text-accent' : 'text-white hover:text-accent';
+
+const links = [
+  { to: '/', label: 'Dashboard', end: true },
+  { to: '/events/new', label: 'Add Event' },
+  { to: '/countries/new', label: 'Add Country' },
+  { to: '/vehicle-types/new', label: 'Add Vehicle Type' },
+] as const;
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="flex gap-4 border-b bg-white p-4">
-        <Link to="/">Dashboard</Link>
-        <Link to="/events/new">Add Event</Link>
+    <div className="min-h-screen bg-bg text-text">
+      <nav className="flex gap-4 bg-header p-4">
+        {links.map(({ to, label, ...rest }) => (
+          <NavLink key={to} to={to} className={linkClass} {...rest}>
+            {label}
+          </NavLink>
+        ))}
       </nav>
-      <main className="p-6">
+      <main className="pt-10">
         <Outlet />
       </main>
     </div>

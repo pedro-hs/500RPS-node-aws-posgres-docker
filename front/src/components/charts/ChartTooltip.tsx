@@ -20,7 +20,7 @@ export function ChartTooltip({ active, payload, total }: Props) {
   }
 
   return (
-    <div className="rounded border bg-white px-2 py-1 text-sm shadow">
+    <div className="rounded border border-border bg-surface px-2 py-1 text-sm shadow">
       <p className="font-medium">{point.label}</p>
       <p>{point.total} ({formatPercent(point.total, total)})</p>
     </div>

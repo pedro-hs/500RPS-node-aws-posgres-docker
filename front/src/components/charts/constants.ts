@@ -1,10 +1,10 @@
 export const CHART_HEIGHT = 400;
 export const DIM_OPACITY = 0.35;
-export const CHART_COLOR = '#4f46e5';
-export const CHART_COLOR_LIGHT = '#818cf8';
+export const CHART_COLOR = '#0d9488';
+export const CHART_COLOR_LIGHT = '#14b8a6';
 export const LINE_STROKE_WIDTH = 2;
 export const LINE_DOT_RADIUS = 4;
 export const LINE_ACTIVE_DOT_RADIUS = 7;
 export const PIE_INNER_RADIUS = 80;
 export const PIE_OUTER_RADIUS = 130;
-export const PIE_COLORS = [CHART_COLOR, '#6366f1', CHART_COLOR_LIGHT, '#a5b4fc', '#c7d2fe'] as const;
+export const PIE_COLORS = ['#0f766e', CHART_COLOR, CHART_COLOR_LIGHT, '#5eead4', '#99f6e4'] as const;

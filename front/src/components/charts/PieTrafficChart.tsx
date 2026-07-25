@@ -28,7 +28,7 @@ export function PieTrafficChart({ data }: ChartProps) {
             />
           ))}
         </Pie>
-        <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-gray-900 text-2xl font-bold">
+        <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-text text-2xl font-bold">
           {total}
         </text>
       </PieChart>
