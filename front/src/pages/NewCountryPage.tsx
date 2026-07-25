@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
+import { FormError } from '../components/FormError';
 import { useInsertCountry } from '../hooks/useInsertCountry';
 
 export default function NewCountryPage() {
@@ -41,8 +42,10 @@ export default function NewCountryPage() {
         <Button type="submit" disabled={insertCountry.isPending}>
           {insertCountry.isPending ? 'Saving...' : 'Create country'}
         </Button>
-        {insertCountry.isSuccess && <p>Country created.</p>}
-        {insertCountry.isError && <p>Failed to create country.</p>}
+        {insertCountry.isSuccess && (
+          <p className="text-center text-green-600">Country created</p>
+        )}
+        {insertCountry.isError && <FormError message={insertCountry.error.message} />}
       </form>
     </Card>
   );

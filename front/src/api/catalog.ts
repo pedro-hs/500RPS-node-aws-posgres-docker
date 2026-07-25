@@ -19,6 +19,10 @@ export interface InsertVehicleTypeRequest {
   name: string;
 }
 
+export const listCountries = () => apiFetch<Country[]>('/catalog/countries');
+
+export const listVehicleTypes = () => apiFetch<VehicleType[]>('/catalog/vehicle-types');
+
 export const insertCountry = (body: InsertCountryRequest) =>
   apiFetch<Country>('/catalog/countries', {
     method: 'POST',
@@ -30,3 +34,4 @@ export const insertVehicleType = (body: InsertVehicleTypeRequest) =>
     method: 'POST',
     body: JSON.stringify(body),
   });
+

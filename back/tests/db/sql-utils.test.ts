@@ -3,7 +3,9 @@ import {
   loadSql,
   bindToPositionalParams,
   isForeignKeyViolation,
+  isUniqueViolation,
   FOREIGN_KEY_VIOLATION,
+  UNIQUE_VIOLATION,
 } from '../../src/db/sql-utils';
 
 describe('sql-utils', () => {
@@ -23,5 +25,9 @@ describe('sql-utils', () => {
 
   it('isForeignKeyViolation: returns true when error code matches FOREIGN_KEY_VIOLATION', () => {
     expect(isForeignKeyViolation({ code: FOREIGN_KEY_VIOLATION })).toBe(true);
+  });
+
+  it('isUniqueViolation: returns true when error code matches UNIQUE_VIOLATION', () => {
+    expect(isUniqueViolation({ code: UNIQUE_VIOLATION })).toBe(true);
   });
 });

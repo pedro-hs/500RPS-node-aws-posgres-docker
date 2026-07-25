@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
+import { FormError } from '../components/FormError';
 import { useInsertVehicleType } from '../hooks/useInsertVehicleType';
 
 export default function NewVehicleTypePage() {
@@ -28,8 +29,10 @@ export default function NewVehicleTypePage() {
         <Button type="submit" disabled={insertVehicleType.isPending}>
           {insertVehicleType.isPending ? 'Saving...' : 'Create vehicle type'}
         </Button>
-        {insertVehicleType.isSuccess && <p>Vehicle type created.</p>}
-        {insertVehicleType.isError && <p>Failed to create vehicle type.</p>}
+        {insertVehicleType.isSuccess && (
+          <p className="text-center text-green-600">Vehicle type created</p>
+        )}
+        {insertVehicleType.isError && <FormError message={insertVehicleType.error.message} />}
       </form>
     </Card>
   );

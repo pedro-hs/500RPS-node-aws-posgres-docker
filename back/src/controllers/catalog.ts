@@ -1,4 +1,5 @@
 import type { FastifyRequest, FastifyReply } from 'fastify';
+import { isUniqueViolation } from '../db/sql-utils';
 import type { ICatalogService, ICountry, IVehicleTypeRequest } from '../interfaces/catalog';
 
 export class CatalogController {
@@ -18,15 +19,31 @@ export class CatalogController {
     request: FastifyRequest<{ Body: ICountry }>,
     reply: FastifyReply,
   ) => {
-    const country = await this.service.insertCountry(request.body);
-    reply.code(201).send(country);
+    try {
+      const country = await this.service.insertCountry(request.body);
+      reply.code(201).send(country);
+    } catch (err) {
+      if (isUniqueViolation(err)) {
+        reply.code(409).send({ message: 'Country already exists' });
+        return;
+      }
+      throw err;
+    }
   };
 
   public insertVehicleType = async (
     request: FastifyRequest<{ Body: IVehicleTypeRequest }>,
     reply: FastifyReply,
   ) => {
-    const vehicleType = await this.service.insertVehicleType(request.body);
-    reply.code(201).send(vehicleType);
+    try {
+      const vehicleType = await this.service.insertVehicleType(request.body);
+      reply.code(201).send(vehicleType);
+    } catch (err) {
+      if (isUniqueViolation(err)) {
+        reply.code(409).send({ message: 'Vehicle type already exists' });
+        return;
+      }
+      throw err;
+    }
   };
 }

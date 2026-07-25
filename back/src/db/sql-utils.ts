@@ -19,7 +19,12 @@ export function bindToPositionalParams<T>(sql: string, namedParams: T): { text: 
 }
 
 export const FOREIGN_KEY_VIOLATION = '23503';
+export const UNIQUE_VIOLATION = '23505';
 
 export function isForeignKeyViolation(err: unknown): boolean {
   return (err as { code?: string }).code === FOREIGN_KEY_VIOLATION;
+}
+
+export function isUniqueViolation(err: unknown): boolean {
+  return (err as { code?: string }).code === UNIQUE_VIOLATION;
 }
