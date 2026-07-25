@@ -1,5 +1,5 @@
 import type { TooltipContentProps } from 'recharts';
-import type { ChartPoint } from './types';
+import type { ChartPoint } from './utils/types';
 
 type Props = Pick<TooltipContentProps, 'active' | 'payload'> & {
   total: number;

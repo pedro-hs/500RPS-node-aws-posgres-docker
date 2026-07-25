@@ -6,12 +6,12 @@ import {
   LINE_ACTIVE_DOT_RADIUS,
   LINE_DOT_RADIUS,
   LINE_STROKE_WIDTH,
-} from './constants';
-import type { ChartProps } from './types';
-import { useChartHighlight } from './useChartHighlight';
+} from './utils/constants';
+import type { ChartProps } from './utils/types';
+import { useChartState } from './utils/useChartState';
 
 export function LineTrafficChart({ data }: ChartProps) {
-  const { setActive, total, opacity } = useChartHighlight(data);
+  const { setActive, total, opacity } = useChartState(data);
 
   return (
     <ResponsiveContainer width="100%" height={CHART_HEIGHT}>

@@ -1,11 +1,11 @@
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { ChartTooltip } from './ChartTooltip';
-import { CHART_COLOR, CHART_HEIGHT } from './constants';
-import type { ChartProps } from './types';
-import { useChartHighlight } from './useChartHighlight';
+import { CHART_COLOR, CHART_HEIGHT } from './utils/constants';
+import type { ChartProps } from './utils/types';
+import { useChartState } from './utils/useChartState';
 
 export function BarTrafficChart({ data }: ChartProps) {
-  const { setActive, total, opacity } = useChartHighlight(data);
+  const { setActive, total, opacity } = useChartState(data);
 
   return (
     <ResponsiveContainer width="100%" height={CHART_HEIGHT}>

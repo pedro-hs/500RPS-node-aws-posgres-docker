@@ -1,11 +1,11 @@
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { ChartTooltip } from './ChartTooltip';
-import { CHART_HEIGHT, PIE_COLORS, PIE_INNER_RADIUS, PIE_OUTER_RADIUS } from './constants';
-import type { ChartProps } from './types';
-import { useChartHighlight } from './useChartHighlight';
+import { CHART_HEIGHT, PIE_COLORS, PIE_INNER_RADIUS, PIE_OUTER_RADIUS } from './utils/constants';
+import type { ChartProps } from './utils/types';
+import { useChartState } from './utils/useChartState';
 
 export function PieTrafficChart({ data }: ChartProps) {
-  const { setActive, total, opacity } = useChartHighlight(data);
+  const { setActive, total, opacity } = useChartState(data);
 
   return (
     <ResponsiveContainer width="100%" height={CHART_HEIGHT}>
