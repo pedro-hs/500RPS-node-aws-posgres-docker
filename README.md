@@ -1,4 +1,4 @@
-- Serverless solution that handle +500 RPS per aggregated enpoint, using Node (Fastify), AWS (EC2, RDS, S3), React (Recharts), Github Actions and Terraform.
+- Serverless solution that handle 500 RPS per aggregated enpoint, using Node (Fastify), AWS (EC2, RDS, S3), React (Vite, Recharts), Github Actions and Terraform.
 
 - Arch:
 ```
@@ -36,7 +36,7 @@ At approximately 500 iterations/s per aggregated GET endpoint (Country-wise Traf
 ### How scale?
 - 5 RPS -> single node process + postgres same server
 - 50 RPS -> node cluster + connection pool + index
-- 500 RPS -> vertical scale + node cache + split EC2, RDS
+- 500 RPS -> vertical scale + node cache + aggregation table + split EC2, RDS
 - +10000 RPS (reading from aggregation table) -> Horizontal API scale using Application Layer Load Balancer with Least Response Time algorithm helps, until DB or a single hot row turns the bottleneck, then DB replicas, Redis + Elastic Cache, async counters matters more than another EC2.
 
 # HOW RUN LOCALLY?
