@@ -1,4 +1,4 @@
-- Serverless solution that handle 500 RPS per aggregated enpoint, using Node (Fastify), AWS (EC2, RDS, S3), React (Vite, Recharts), Github Actions and Terraform.
+- Handle 500 RPS in 'Country-wise Traffic' and 'Vehicle Type Distribution' enpoints, using Node (Fastify, Docker), AWS (EC2, RDS PostgreSQL, S3), React (Vite, Recharts), Github Actions and Terraform.
 
 - Arch:
 ```

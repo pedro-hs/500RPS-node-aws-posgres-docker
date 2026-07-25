@@ -25,7 +25,7 @@ describe('NewCountryPage', () => {
     await user.click(screen.getByRole('button', { name: 'Create country' }));
 
     await waitFor(() => {
-      expect(insertCountry.mock.calls[0]?.[0]).toEqual({ id: 'BR', name: 'Brazil' });
+      expect(insertCountry).toHaveBeenCalledWith({ id: 'BR', name: 'Brazil' });
     });
     expect(await screen.findByText('Country created')).toBeInTheDocument();
   });

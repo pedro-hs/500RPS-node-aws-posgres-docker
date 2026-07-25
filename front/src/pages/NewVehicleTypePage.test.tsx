@@ -24,7 +24,7 @@ describe('NewVehicleTypePage', () => {
     await user.click(screen.getByRole('button', { name: 'Create vehicle type' }));
 
     await waitFor(() => {
-      expect(insertVehicleType.mock.calls[0]?.[0]).toEqual({ name: 'Truck' });
+      expect(insertVehicleType).toHaveBeenCalledWith({ name: 'Truck' });
     });
     expect(await screen.findByText('Vehicle type created')).toBeInTheDocument();
   });

@@ -35,7 +35,7 @@ describe('NewEventPage', () => {
     await user.click(screen.getByRole('button', { name: 'Add event' }));
 
     await waitFor(() => {
-      expect(insertEvent.mock.calls[0]?.[0]).toEqual({
+      expect(insertEvent).toHaveBeenCalledWith({
         countryId: 'BR',
         vehicleTypeId: 2,
       });

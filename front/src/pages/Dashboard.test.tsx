@@ -41,7 +41,7 @@ describe('Dashboard', () => {
     await user.click(screen.getByRole('button', { name: 'Country-wise Traffic' }));
 
     await waitFor(() => {
-      expect(getCountryVolume.mock.calls.length).toBeGreaterThan(1);
+      expect(vi.mocked(getCountryVolume).mock.calls.length).toBeGreaterThan(1);
     });
   });
 
