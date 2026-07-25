@@ -25,7 +25,10 @@ describe('NewCountryPage', () => {
     await user.click(screen.getByRole('button', { name: 'Create country' }));
 
     await waitFor(() => {
-      expect(insertCountry).toHaveBeenCalledWith({ id: 'BR', name: 'Brazil' });
+      expect(insertCountry).toHaveBeenCalledWith(
+        { id: 'BR', name: 'Brazil' },
+        expect.anything(),
+      );
     });
     expect(await screen.findByText('Country created')).toBeInTheDocument();
   });

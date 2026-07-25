@@ -35,10 +35,10 @@ describe('NewEventPage', () => {
     await user.click(screen.getByRole('button', { name: 'Add event' }));
 
     await waitFor(() => {
-      expect(insertEvent).toHaveBeenCalledWith({
-        countryId: 'BR',
-        vehicleTypeId: 2,
-      });
+      expect(insertEvent).toHaveBeenCalledWith(
+        { countryId: 'BR', vehicleTypeId: 2 },
+        expect.anything(),
+      );
     });
     expect(await screen.findByText('Event added')).toBeInTheDocument();
   });

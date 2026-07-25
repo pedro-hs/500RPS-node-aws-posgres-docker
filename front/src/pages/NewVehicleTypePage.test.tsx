@@ -24,7 +24,10 @@ describe('NewVehicleTypePage', () => {
     await user.click(screen.getByRole('button', { name: 'Create vehicle type' }));
 
     await waitFor(() => {
-      expect(insertVehicleType).toHaveBeenCalledWith({ name: 'Truck' });
+      expect(insertVehicleType).toHaveBeenCalledWith(
+        { name: 'Truck' },
+        expect.anything(),
+      );
     });
     expect(await screen.findByText('Vehicle type created')).toBeInTheDocument();
   });
