@@ -31,7 +31,7 @@
 ```
 
 ### It worked? K6 load test
-At ~500 chart iterations/s per aggregated GET endpoint running at same time, flag cache-on held around ~171ms with almost no dropped iterations, while flag cache-off pushed a bit over 200ms and dropped a bit more load — same API, cache absorbing most DB hits.
+At ~500 chart iterations/s per aggregated GET endpoint ('Country-wise Traffic' and 'Vehicle Type Distribution') running at same time, flag cache-on held around ~171ms with almost no dropped iterations, while flag cache-off pushed a bit over 200ms and dropped a bit more load — same API, cache absorbing most DB hits.
 
 ### How scale?
 - 5 RPS -> single node process + postgres same server
