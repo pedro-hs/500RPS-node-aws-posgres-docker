@@ -30,8 +30,8 @@
   Local: run-local.sh → Docker Postgres + API + Vite
 ```
 
-### It worked? K6 load test
-At ~500 chart iterations/s per aggregated GET endpoint ('Country-wise Traffic' and 'Vehicle Type Distribution') running at same time, flag cache-on held around ~171ms with almost no dropped iterations, while flag cache-off pushed a bit over 200ms and dropped a bit more load — same API, cache absorbing most DB hits.
+### Performance Validation (K6 Load Test Results)
+At approximately 500 iterations/s per aggregated GET endpoint (Country-wise Traffic and Vehicle Type Distribution), with both endpoints tested concurrently, the cache-on configuration maintained an average response time of ~171 ms with almost no dropped iterations. With cache-off, average latency increased to just over 200 ms and the test experienced more dropped iterations under the same load. This indicates that the cache effectively absorbed most database reads, reducing latency and improving throughput under concurrent access.
 
 ### How scale?
 - 5 RPS -> single node process + postgres same server
